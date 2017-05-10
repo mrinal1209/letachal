@@ -24,15 +24,15 @@ class MobileVerificationNexmoApi{
         $result = curl_exec($ch);
         curl_close($ch);
 
-        return $response->withJson($result);
+        return $result;
 
     }
 
-  
-    public function verifySmsCode($request , $response){
 
-            $requestId = filter_var( $request->getParam('request_id'), FILTER_SANITIZE_NUMBER_INT);
-            $code = filter_var( $request->getParam('code'), FILTER_SANITIZE_NUMBER_INT);
+    public function verifySmsCode($request , $response , $args){
+
+            $requestId = filter_var($request->getParam('request_id'), FILTER_SANITIZE_STRING);
+            $code = filter_var($request->getParam('code'), FILTER_SANITIZE_NUMBER_INT);
             $url="https://api.nexmo.com/verify/check/json";
             $ch = curl_init($url);
     # Setup request to send json via POST.
@@ -45,7 +45,7 @@ class MobileVerificationNexmoApi{
             $result = curl_exec($ch);
             curl_close($ch);
 
-            return $response->withJson($result);
+            return $result;
 
     }
 }
