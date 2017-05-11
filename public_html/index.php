@@ -19,4 +19,6 @@ $app->post('/api/SMS/verifycode',\MobileVerificationNexmoApi::class.':verifySmsC
 
 $app->post('/api/user/register',\UserController::class.':userRegistration');
 
+$app->put('/api/user/deactivate/{id}',\UserController::class.':userDeactivation');
+
 $app->run();
