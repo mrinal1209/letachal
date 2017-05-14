@@ -5,6 +5,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 require '../vendor/autoload.php';
 require_once('Controllers/MobileVerificationNexmoApi.php');
 require_once('Controllers/UserController.php');
+require_once('MiddleWare/TokenAuth.php');
 $app = new \Slim\App;
 
 $app->get('/',function(Request $request,Response $response){
@@ -19,6 +20,8 @@ $app->post('/api/SMS/verifycode',\MobileVerificationNexmoApi::class.':verifySmsC
 
 $app->post('/api/user/register',\UserController::class.':userRegistration');
 
-$app->put('/api/user/deactivate/{id}',\UserController::class.':userDeactivation');
+$app->put('/api/user/deactivate/{id}',\UserController::class.':userDeactivation')->add(new TokenAuth);
 
 $app->run();
+
+?>

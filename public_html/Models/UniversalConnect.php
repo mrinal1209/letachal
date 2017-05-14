@@ -17,7 +17,7 @@ public static function doConnect()
           }
           catch(PDOException $e)
              {
-            //   echo $e->getMessage();
+          //    echo $e->getMessage();
              }
 
           return self::$hookup;
